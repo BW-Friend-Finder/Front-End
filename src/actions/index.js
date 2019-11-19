@@ -7,87 +7,77 @@ Dislike [(other user's id and current user's id)]
 ~Recieve Message (userid, conversation id)
 Update Profile - send back user object (optionals - just changes)
 */
+import axios from 'axios'
+
 export const LOGIN = 'LOGIN';
-export const REGISTER = 'REGISTER';
 export const LIKE = 'LIKE';
 export const DISLIKE = 'DISLIKE';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+export const UPDATE_MATCHES = 'UPDATE_MATCHES'
 
 export const login = loginInfo => dispatch => {
-  dispatch({
-    type: LOGIN,
-    payload: loginInfo
-  });
+  console.log('login')
+  axios.post('https://friend-finder-dev.herokuapp.com/api/users/signin', loginInfo)
+    .then(res => {
+      localStorage.setItem('token', res.data.token);
+      dispatch({
+        type: LOGIN,
+        payload: res.data.user_details
+      });
+    })
+    .catch(console.log)
+  
 }
 export const register = registerInfo => dispatch => {
-  dispatch({
-    type: REGISTER,
-    payload: registerInfo
-  })
-  dispatch({
-    type: LOGIN,
-    payload: {
-      email: registerInfo.email,
-      password: registerInfo.password
-    }
-  });
+  console.log('register')
+  axios.post('https://friend-finder-dev.herokuapp.com/api/users/register', registerInfo)
+    .then(res => {
+      login({
+        email: registerInfo.email,
+        password: registerInfo.password
+      })(dispatch)
+    })
+    .catch(console.log)
 }
 export const update_profile = updatedProfile => dispatch => {
-  //TODO: Don't know how i need to send the data to the backend 
-  // Approach 1: send back an object with key value pairs that have changed
-  // Approach 2: send back an object with the type of change the key that has changed and the updated value
-  /* Approach 1
-  changes
-  key
-  oldUser && newUser
-  if oldUser.key !=== newUser.key
-  changes = {...changes, [key]: newUser.key}
-  */
-  /*
-  typeOfChange
-  approach 2
-  key
-  oldUser && newUser
-  if oldUser.key === null && newUser.key !=== null
-  typeOfChange = 'add'
-  if oldUser.key !=== null && newUser.key === null
-  typeOfChange = 'remove'
-  if oldUser.key !=== null && newUser.key !=== null
-  typeOfChange= 'update'
-  {
-    type: typeOfChange,
-    key: key,
-    change: newUser.key
-  }
-  */
+  console.log('update')
+  axios.post('', updatedProfile)
+    .then(res => {
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data.updated_user
+      })
+    })
+    .catch(console.log)
+}
 
-  /*
-  Approach 1 body = {
-    first_name: 'new first name',
-    gender: 'new gender',
-    interests: ['oldInterestID', 'oldInterestID', 'newInterestID']
-  }
-  Approach 2 body = {
-    type: 'update',
-    key: 'first_name',
-    change: 'new first name'
-  }
-  body = {
-    type: 'add',
-    key: 'gender',
-    change: 'new gender'
-  }
-  body = {
-    type: 'remove',
-    key: 'interests',
-    change: ['oldInterestID', 'oldInterestID']
-  }
-  body = {
-    type: 'add',
-    key: 'interests',
-    change: ['oldInterestID', 'oldInterestID', 'newInterestID']
-  }
-  */
+export const getMatches = () => dispatch => {
+  console.log('get matches')
+  axios.get('')
+    .then(res => {
+      dispatch({
+        type: UPDATE_MATCHES,
+        payload:
+      })
+    })
+    .catch(console.log)
+}
+
+export const like = othersID => dispatch => {
+  console.log('like')
+  axios.post('', [{requestee_id: othersID}])
+    .then(res => {
+
+    })
+    .catch(console.log)
+}
+export const dislike = othersID => dispatch => {
+  console.log('dislike')
+  axios.post('', [{requestee_id: othersID}])
+    .then(res => {
+      
+    })
+    .catch(console.log)
 }
