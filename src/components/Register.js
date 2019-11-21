@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux'
-import {register} from '../actions'
+import {register} from '../actions/user'
+import {SUCCESS, FAILURE} from '../actions'
 
 const Register = props => {
   const [registerForm, setRegisterform] = useState({
-    email: 'email@email.com',
-    password: 'password',
+    email: 'Insurikai@gmail.com',
+    password: 'examplePassword',
     first_name: 'John',
     last_name: 'Doe',
-    age: 0,
+    age: 400,
     zipcode: '99999'
   })
   const changeHandler = e => {
@@ -18,15 +19,18 @@ const Register = props => {
     })
   }
   useEffect(() => {
-    if(props.loginState === 'LOGGED_IN')
+    if(props.backend_request_state === SUCCESS){
       props.history.push('/')
-  }, [props.loginState, props.history])
+    }else if(props.backend_request_state === FAILURE){
+      console.log('Something is wrong, register request threw an error')
+    }
+  }, [props.backend_request_state, props.history])
   const submitHandler = e => {
     e.preventDefault();
     props.register(registerForm);
   }
   return(<div className='Register'>
-    <h1>Login</h1>
+    <h1>Register</h1>
     <form onSubmit={submitHandler}>
       <input type='text' name='first_name' value={registerForm.first_name} onChange={changeHandler}/>
       <input type='text' name='last_name' value={registerForm.last_name} onChange={changeHandler}/>
