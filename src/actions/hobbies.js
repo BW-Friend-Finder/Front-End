@@ -21,7 +21,7 @@ const get_user_hobbies = () => dispatch => {
     .then(res => {
       dispatch({
         type: UPDATE_USER_HOBBIES,
-        payload: res.data
+        payload: res.data 
       })
       console.log('get user', res)
     })
@@ -40,8 +40,9 @@ const add_hobbies_to_user = hobbies => dispatch => {
 
 const remove_hobbies_from_user = hobbies => dispatch => {
   console.log('remove hobbies')
-  console.log(hobbies.map(hobby=> {return {hobbies_id: hobby}}))
-  axiosAuth().delete('https://friend-finder-dev.herokuapp.com/api/hobbies/user', hobbies.map(hobby=> {return {hobbies_id: hobby}}))
+  const r = hobbies.map(hobby=> {return {hobbies_id: hobby}})
+  console.log(r)
+  axiosAuth().delete('https://friend-finder-dev.herokuapp.com/api/hobbies/user', {data:r})
     .then(res => {
       get_user_hobbies()(dispatch)
       console.log('remove user', res)

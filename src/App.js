@@ -2,32 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Route} from 'react-router-dom'
 
-import {login} from './actions/user'
-import {get_all_hobbies, get_user_hobbies, add_hobbies_to_user} from './actions/hobbies'
 import Login from './components/Login';
 import Interests from './components/Interest';
 import Matches from './components/Matches';
 import Conversations from './components/Conversations';
-import Register from './components/Register';
 import Profile from './components/Profile';
+import PrivateRoute from './tools/PrivateRoute'
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 
 function App(props) {
   return (
     <div className="App">
-      <h1>App</h1>
-      <Route path='/' component={Register}/>
-      <Route path='/' component={Login}/>
-      <Route path='/' component={Profile}/>
-      <Route path='/' component={Interests}/>
-      <Route path='/' component={Matches}/>
-      <Route path='/' component={Conversations}/>
+      <Route path='/signup' component={SignUp}/>
+      <Route path='/signin' component={SignIn}/>
+      {/* <PrivateRoute path='/user' component={Profile}/>
+      <PrivateRoute path='/user' component={Interests}/>
+      <PrivateRoute exact path='/' component={Matches}/>
+      <PrivateRoute path='/messages' component={Conversations}/> */}
     </div>
   );
 }
 
-export default connect(state => state, {get_all_hobbies,get_user_hobbies,add_hobbies_to_user,login})(App);
-
-/*
-  login, logout, register, delete, update
-  hobbies: getAll, getUser, addUser, removeUser('error code 500')
-*/
+export default connect(null, {})(App);
