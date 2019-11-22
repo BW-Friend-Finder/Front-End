@@ -8,14 +8,16 @@ import Login from './components/Login';
 import Interests from './components/Interest';
 import Matches from './components/Matches';
 import Conversations from './components/Conversations';
+import Register from './components/Register';
+import Profile from './components/Profile';
 
 function App(props) {
   return (
     <div className="App">
       <h1>App</h1>
-      {/* <Route path='/' component={Register}/> */}
+      <Route path='/' component={Register}/>
       <Route path='/' component={Login}/>
-      {/* <Route path='/' component={Profile}/> */}
+      <Route path='/' component={Profile}/>
       <Route path='/' component={Interests}/>
       <Route path='/' component={Matches}/>
       <Route path='/' component={Conversations}/>

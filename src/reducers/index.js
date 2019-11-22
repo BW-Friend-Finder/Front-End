@@ -11,6 +11,8 @@ export default (state, action) => {
       return{...state, hobbies:{...state.hobbies, all: action.payload}}
     case actions.UPDATE_USER_HOBBIES:
       return{...state, hobbies:{...state.hobbies, user: action.payload}}
+    case actions.UPDATE_POTENTIAL_MATCHES:
+      return {...state, matches:{...state.matches, potential: action.payload}}
     case actions.LOGOUT:
       return {
         user: {
@@ -27,6 +29,11 @@ export default (state, action) => {
         hobbies:{
           all: [],
           user: []
+        },
+        matches:{
+          matched:[],
+          potential:[],
+          liked:[]
         },
         backend_request_state: state.backend_request_state
       }
@@ -47,6 +54,11 @@ export default (state, action) => {
         hobbies:{
           all: [],
           user: []
+        },
+        matches:{
+          matched:[],
+          potential:[],
+          liked:[]
         },
         backend_request_state: actions.PENDING_NEW_REQUEST
       }

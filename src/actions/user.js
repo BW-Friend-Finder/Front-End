@@ -64,7 +64,9 @@ export const register = registerInfo => dispatch => {
         password: registerInfo.password
       })(dispatch)
     })
-    .catch(console.log)
+    .catch(error=>{
+      console.log(error)
+    })
 }
 
 export const update_profile = updatedProfile => dispatch => {
