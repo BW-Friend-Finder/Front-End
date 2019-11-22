@@ -16,10 +16,10 @@ function App(props) {
     <div className="App">
       <Route path='/signup' component={SignUp}/>
       <Route path='/signin' component={SignIn}/>
-      {/* <PrivateRoute path='/user' component={Profile}/>
+      <PrivateRoute path='/user' component={Profile}/>
       <PrivateRoute path='/user' component={Interests}/>
       <PrivateRoute exact path='/' component={Matches}/>
-      <PrivateRoute path='/messages' component={Conversations}/> */}
+      <PrivateRoute path='/messages' component={Conversations}/>
     </div>
   );
 }
