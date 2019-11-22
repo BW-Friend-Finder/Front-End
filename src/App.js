@@ -17,11 +17,11 @@ function App(props) {
       <Route path='/signup' component={SignUp}/>
       <Route path='/signin' component={SignIn}/>
       <PrivateRoute path='/user' component={Profile}/>
-      <PrivateRoute path='/user' component={Interests}/>
+      <PrivateRoute path='/interests' component={Interests}/>
       <PrivateRoute exact path='/' component={Matches}/>
       <PrivateRoute path='/messages' component={Conversations}/>
     </div>
   );
 }
 
-export default connect(null, {})(App);
+export default connect(state=>state, {})(App);

@@ -13,6 +13,8 @@ export default (state, action) => {
       return{...state, hobbies:{...state.hobbies, user: action.payload}}
     case actions.UPDATE_POTENTIAL_MATCHES:
       return {...state, matches:{...state.matches, potential: action.payload}}
+    case actions.UPDATE_MATCHES:
+      return {...state, matches:{...state.matches, matched: action.payload}}
     case actions.LOGOUT:
       return {
         user: {

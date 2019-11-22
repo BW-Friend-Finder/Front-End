@@ -4,7 +4,7 @@ import {get_potential_matches, like, dislike} from '../actions/matches'
 
 const Card = props => {
   return(
-    <div>
+    <div style={{display: 'flex', flexDirection: 'column'}}>
       <p>{props.user.first_name}</p>
       <button onClick={()=>{props.like(props.user.user_id)}}>Like</button>
       <button onClick={()=>{props.dislike(props.user.user_id)}}>Dislike</button>
@@ -29,10 +29,12 @@ const Matches = props => {
     setLiked([...liked, {requestee_id: id}])
   }
   return(
-  <div className='Match'>
+  <div className='Match' style={{display: 'flex', flexWrap: 'wrap'}}>
     {
       potentialMatches.map(user => <Card key={user.id} user={user} like={like} dislike={dislike}/>)
     }
+    <br/>
+    <button onClick={()=>{props.like(liked)}}>Update</button>
   </div>
   )
 }
