@@ -1,0 +1,128 @@
+login:
+  send:{
+    email: '',
+    password: ''
+  }
+  receive:{
+    message: '',
+    token: '',
+    user_details: {
+      id: 0,
+      email: '',
+      first_name: '',
+      last_name: '',
+      age: 0,
+      gender: '',
+      city: '',
+      state: '',
+      zipcode: ''
+    }
+  }
+
+register: 
+  send:{
+    email: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    age: 0,
+    zipcode: ''
+  }
+  receive: confirmation response
+
+update_profile:
+  send:{
+    changed_user: {
+      id: 0,
+      email: '',
+      first_name: '',
+      last_name: '',
+      age: 0,
+      gender: '',
+      city: '',
+      state: '',
+      zipcode: ''
+    }
+  }
+  receive:{
+    updated_user: {
+      id: 0,
+      email: '',
+      first_name: '',
+      last_name: '',
+      age: 0,
+      gender: '',
+      city: '',
+      state: '',
+      zipcode: ''
+    }
+  }
+
+like:
+  send:[
+    {
+      requestee_id: 0
+    }
+  ]
+  receive: confirmation response
+
+dislike:
+  send: filter locally
+  receive: confirmation response
+  
+sendMessage:
+  send:{
+    conversationID: 0,
+    message: ''
+  }
+  receive: confirmation response
+  
+receiveMessages:
+  send:{
+    conversationID: 0
+  }
+  receive: [
+    {
+      conversationID: 0,
+      messages: [
+        {
+          senderID: 0,
+          message: ''
+        }
+      ]
+    }
+  ]
+
+getUsersConversations: 
+  send: token
+  receive: [
+    0
+  ]
+
+getPossibleMatches:
+  send: token
+  receive: [
+    {userInfo}
+  ]
+
+getMatches:
+  send: token
+  receive: [
+    {userInfo}
+  ]
+
+{
+  conversationID: 0
+  messages: [
+    {
+      senderID: 0,
+      message: ''
+    }
+  ]
+}
+
+
+
+
+commits: whenever
+pull requests: substantial changes, 
